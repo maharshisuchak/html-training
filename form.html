@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>User Information </legend>
+			First Name :<br>
+			<input type="text" name="firstname" value="Ankur"><br>
+			Last Name :<br>
+			<input type="text" name="lastname" value="javia"><br>
+			Gender :<br>
+			<input type="radio" name="gender" value="male" checked="checked">
+			<input type="radio" name="gender" value="female">
+			<br>
+			Adress :<br>
+			<textarea name="adress" rows="3" cols="30" ></textarea>
+			<br>
+			Cars :<br>
+			<select name="cars">
+				<option value="volvo">volvo</option>
+				<option value="BMW">BMW</option>
+				<option value="Audi" selected="selected">Audi</option>
+				<option value="Mahindra">Mahindra</option>
+			</select>
+			<br>
+			Hobby :<br>
+			<input type="checkbox" name="music" value="Music">Music
+			<input type="checkbox" name="reading" value="Reading">Reading
+			<input type="checkbox" name="game" value="Game" checked="checked">Game
+			<input type="checkbox" name="adventure" value="Adventure">Adventure
+			<br>
+			Browsers : <br>
+			<input list="browsers">
+			<datalist id="browsers">
+				<option value="Internet Explorer">
+				<option value="safari">
+				<option value="Crome">
+				<option value="Mozilla">
+			</datalist>
+			<br>
+			User Name :<br>
+			<input type="text" name="userId"><br>
+			User Password :<br>
+			<input type="password" name="userPassword"><br>
+			<input type="submit" name="submit" onclick="alert('submited')">
+			<input type="reset" name="reset">
+		</fieldset>
+	</form>
+</body>
+</html>

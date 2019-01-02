@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Output Element</title>
+</head>
+<body>
+	<h2>The Output Element</h2>
+	<p>The output element represents the result of a calculation.</p>
+	<form action="/action_page.php" oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+		0
+		<input type="range" name="a" id="a" value="50">
+		100+
+		<input type="number" name="b" id="b" value="50">
+		=
+		<output name="x" for="a b"></output>
+		<br>
+		<input type="submit">	
+	</form>
+	<p><strong>Note:</strong> The output element is not supported in Edge 12 or Internet Explorer and earlier versions.</p>
+</body>
+</html>

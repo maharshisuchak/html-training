@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Input Types</title>
+</head>
+<body>
+	<form action="\action_page.php" novalidate="novalidate" id="form1">
+		First Name : <input type="text" name="firstname" value="Ankur" readonly="readonly" ><br>
+		Last Name : <input type="text" name="lastname" value="Javia" disabled="disabled" ><br>
+		Address : <input type="text" name="address" size="10" maxlength="6" autofocus="autofocus"><br>
+		Pick up your favourite color : <input type="Color" name="favcolor" value="#0055ff"><br>
+		Enter Birthdate : <input type="date" name="birthdate" min="1999-12-31" disabled="disabled"><br>
+		local timezone : <input type="datetime-local" name="localtime" autocomplete="autocomplete"><br>
+		Month Year : <input type="Month" name="month-year"><br>
+		Email : <input type="email" name="email"><br>
+		Upload File : <input type="file" name="myfile" multiple="multiple"><br>
+		Enter quantity : <input type="number" name="quantity" min="1" max="10" step="2" value="2"><br>
+		Search online : <input type="Search" name="google search" placeholder="website"><br>
+		Time : <input type="Time" name="time"><br>
+		Week : <input type="Week" name="week"><br>
+		Home Page : <input type="url" name="homepage" required="required"><br>
+		<input type="submit"> 
+	</form>
+	<br>
+	Education Detail :<input type="text" name="education" form="form1">
+</body>
+</html>
