@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+	<style type="text/css">
+		table, th, td{
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		table#t01 tr:nth-child(even){
+			background-color: #f1f1c1;
+		}
+		table#t01 tr:nth-child(odd){
+			background-color: #eee;
+		}
+	</style>
+</head>
+<body>
+	<table id="t01" width="100%">
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+	</tr>
+	<tr>
+		<td>Ankur</td>
+		<td>Javia</td>
+	</tr>
+	<tr>
+		<td>Bhavesh</td>
+		<td>Chavda</td>
+	</tr>
+	<tr>
+		<td>Rakshit</td>
+		<td>Katba</td>
+	</tr>
+	</table>
+	<hr>
+	<h2>Cell span of columns</h2>
+	<p>To make a cell span more than one column, use the colspan attribute.</p>
+	<table width="100%">
+		<tr>
+			<th>Name</th>
+			<th colspan="2">Phone Number</th>
+		</tr>
+		<tr>
+			<td>Ankur Javia</td>
+			<td>9408239141</td>
+			<td>6352416104</td>
+		</tr>
+	</table>
+	<hr>
+	<h2>cell span of rows</h2>
+	<p>To make a cell span more than one rows, use the rowspan attribute.</p>
+	<table width="100%">
+		<caption>User Detail</caption>
+		<tr>
+			<th>Name</th>
+			<td>Ankur javia</td>
+		</tr>
+		<tr>
+			<th rowspan="2">Phone Number</th>
+			<td>9408239141</td>
+		</tr>
+		<tr>
+			<td>6352416104</td>
+		</tr>
+	</table>
+</body>
+</html>
