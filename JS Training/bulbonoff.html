@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bulb OnOff</title>
+	<script type="text/javascript">
+		function firstfunction() {
+			// body...
+			document.getElementById('changestyle3').style.color='red';
+		}
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+		function scriptinbody(){
+			document.getElementById('changestyle4').innerHTML="I'm from Manavadar.";
+		}
+	</script>
+	<h2>Can change attribute value using JS</h2>
+	<button type="button" onclick="document.getElementById('myImage').src='pic_bulbon.gif'">Turn ON</button>
+	<img id="myImage" src="pic_bulboff.gif" style="width: 100px">
+	<button type="button" onclick="document.getElementById('myImage').src='pic_bulboff.gif'">Turn OFF</button>
+	<hr>
+	<h2>Can change html style</h2>
+	<P id="changestyle">Hello!, My name is Ankur Javia.</P>
+	<button type="button" onclick="document.getElementById('changestyle').style.fontSize='35px'">Click Me!</button>
+	<hr>
+	<h2>Can change html style</h2>
+	<P id="changestyle1">Hello!, My name is Ankur Javia.</P>
+	<button type="button" onclick="document.getElementById('changestyle1').style.display='none'">Click Me!</button>
+	<hr>
+	<h2>Can change html style</h2>
+	<P id="changestyle2" style="display: none;">Hello!, My name is Ankur Javia.</P>
+	<button type="button" onclick="document.getElementById('changestyle2').style.display='block'">Click Me!</button>
+	<hr>
+	<h2>Can change html style</h2>
+	<P id="changestyle3">Hello!, My name is Ankur Javia.</P>
+	<button type="button" onclick="firstfunction()">Click Me!</button>
+	<hr>
+	<h2>Can change html style</h2>
+	<P id="changestyle4" >Hello!, My name is Ankur Javia.</P>
+	<button type="button" onclick="scriptinbody()">Click Me!</button>
+</body>
+</html>

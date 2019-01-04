@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Output</title>
+</head>
+<body>
+	<h2>innetHTML</h2>
+	<p id="innerhtml">Hello, World!</p>
+	<script>
+		document.getElementById('innerhtml').innerHTML = 10 + 5;
+	</script>
+	<hr>
+	<h2>document.write</h2>
+	<p id="documentwrite">Hello, world!</p>
+	<p>Never call document.write after the page load, it will overwrite the whole document. Example : onclick </p>
+	<script>
+		document.write(6*5);
+	</script>
+	<hr>
+	<h2>window alert</h2>
+	<p>Result displayed in the alert box.</p>
+	<script>
+		window.alert(9/3);
+	</script>
+	<hr>
+	<h2>Console log</h2>
+	<p>Mostly, Consolelog is used for the debugger purposes.</p>
+	<p>result will be in console tab in inspect element in browser.</p>
+	<script >
+		console.log(18-4);
+	</script>
+</body>
+</html>
