@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS String Method</title>
+</head>
+<body>
+	<h2>String Methods in JS</h2>
+	length : <p id="demo"></p>
+	index of Ankur : <p id="demo1"></p>
+	last index of Hello : <p id="demo2"></p>
+	search Ankur : <p id="demo3"></p>
+	<script type="text/javascript">
+		var txt = "Hello, I'm Ankur Javia from Manavadar. I've completed my education from darshan institute rajkot.";
+		document.getElementById('demo').innerHTML = txt.length;
+		document.getElementById('demo1').innerHTML = txt.indexOf('Ankur', 5);
+		document.getElementById('demo2').innerHTML = txt.lastIndexOf('Ankur');
+		document.getElementById('demo3').innerHTML = txt.search('Ankur');
+	</script>
+</body>
+</html>
