@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Days in Month</title>
+</head>
+<body>
+	<p>Enter the month :</p>
+	<input id="monthid" type="text" name="month">
+	<button onclick="getDayInMonth()">Get the Number of Days!</button>
+	<br>
+	<p id="daysinmonth"></p>
+
+
+	<script type="text/javascript">
+		var monthname;
+		var str = document.getElementById('daysinmonth');
+		var day;
+		var defaultmsg = "Please Enter proper month name.";
+		
+		var message; 
+
+		function getDayInMonth() {
+			IsMsg = true;
+			monthname = (document.getElementById('monthid').value).toLowerCase() ;
+			
+				switch(monthname){
+				case 'january' :
+				case 'march' :
+				case 'may' :
+				case 'july' :
+				case 'august' :
+				case 'october' :
+				case 'december' :
+					day = '31';
+				break;
+
+				case 'february' :
+					day = '28';
+				break;
+
+				case 'april' :
+				case 'june' :
+				case 'september' :
+				case 'november' :
+					day = '30'
+				break;
+
+				default :
+				IsMsg = false;
+
+				}
+				
+				message = IsMsg ? `There are ${day} days in ${monthname}` : defaultmsg;
+				str.innerHTML = message; 
+			
+		}
+	</script>
+</body>
+</html>

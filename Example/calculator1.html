@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+</head>
+<body>
+	<p>Please enter the 1st value:</p>
+	<input id="value_one" type="text" name="value_one">
+	<p>Please enter the 2nd value:</p>
+	<input id="value_two" type="text" name="value_two">
+	<br>
+	<br>
+	<button onclick="addition()"> + </button>
+	<button onclick="substraction()"> - </button>
+	<button onclick="multiplication()"> * </button>
+	<button onclick="division()"> / </button>
+	<br>
+	<p>Answer is : </p>
+	<p id="answer"></p>
+
+	<script type="text/javascript">
+		 a = document.getElementById('value_one');
+		 b = document.getElementById('value_two');
+		ans = document.getElementById('answer');
+		var aValue, bValue;
+
+
+		function addition() {
+			aValue = parseFloat(a.value);
+			bValue = parseFloat(b.value);
+			
+				if (isNaN(aValue) || isNaN(bValue)) {
+					ans.innerHTML = "Please don't enter string";
+				}
+				else{
+					ans.innerHTML = aValue + bValue;
+				}		
+		}
+
+		function substraction() {
+			aValue = parseFloat(a.value);
+			bValue = parseFloat(b.value);
+			
+				if (isNaN(aValue) || isNaN(bValue)) {
+					ans.innerHTML = "Please don't enter string";
+				}
+				else{
+					ans.innerHTML = aValue - bValue;
+				}
+		}
+
+		function multiplication() {
+			aValue = parseFloat(a.value);
+			bValue = parseFloat(b.value);
+			
+				if (isNaN(aValue) || isNaN(bValue)) {
+					ans.innerHTML = "Please don't enter string";
+				}
+				else{
+					ans.innerHTML = aValue * bValue;
+				}
+		}
+
+		function division() {
+			aValue = parseFloat(a.value);
+			bValue = parseFloat(b.value);
+			
+				if (isNaN(aValue) || isNaN(bValue) || bValue==0) {  	
+					ans.innerHTML = "Please don't enter string";
+				}else{
+					ans.innerHTML = aValue / bValue;					
+				}
+		}
+	</script>
+</body>
+</html>

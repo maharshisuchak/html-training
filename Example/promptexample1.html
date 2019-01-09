@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prompt Box</title>
+</head>
+<body>
+	<!--
+		Get the value from promptbox
+	-->
+	<p id="message"></p>
+	<!--
+		Evaluate the value and display message
+	-->
+	<script type="text/javascript">
+		var num = prompt("Please enter the value : ");
+		var str = document.getElementById('message');
+		var text = '';
+		var text_1;
+		for(var i = 1; i <= num; i++){
+			if(i % 15 == 0){
+				text_1 =`FIZZ-BUZZ`;
+			} 
+			else if (i % 3 == 0) {
+				text_1 =`FIZZ`;
+			}
+			else if (i % 5 == 0){
+				text_1 =`BUZZ`;
+			}
+			text +=`${i} is ${text_1} <br>`
+		}
+
+		str.innerHTML = text;
+	</script>
+</body>
+</html>

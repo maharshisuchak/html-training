@@ -13,6 +13,7 @@
 	<p>Please Enter the 2nd value :</p>
 	<input id="number2" type="number" name="input2">
 	<br>
+	<br>
 	<button onclick="addition()"> + </button>
 	<button onclick="substraction()"> - </button>
 	<button onclick="multiplication()"> * </button>
@@ -26,36 +27,38 @@
 	-->
 
 	<script type="text/javascript">
-		var a,b,ans;
+		var a,b;
+		var answer = document.getElementById('answer');
 
 		function addition() {
 			//a = document.getElementById('number1').value;
 			a = Number(document.getElementById('number1').value);
+			// a = +document.getElementById('number1').value;
+			// parseInt
 			//b = document.getElementById('number2').value;
 			b = Number(document.getElementById('number2').value);
-			ans = a + b;
-			document.getElementById('answer').innerHTML = ans;
+			answer.innerHTML = a + b;
 		}
 
 		function substraction() {
 			a = document.getElementById('number1').value;
 			b = document.getElementById('number2').value;
 			ans = a - b;
-			document.getElementById('answer').innerHTML = ans;
+			answer.innerHTML = ans;
 		}
 
 		function multiplication() {
 			a = document.getElementById('number1').value;
 			b = document.getElementById('number2').value;
 			ans = a * b;
-			document.getElementById('answer').innerHTML = ans;
+			answer.innerHTML = ans;
 		}
 
 		function division() {
 			a = document.getElementById('number1').value;
 			b = document.getElementById('number2').value;
 			ans = a / b;
-			document.getElementById('answer').innerHTML = ans;
+			answer.innerHTML = ans;
 		}
 	</script>
 </body>
