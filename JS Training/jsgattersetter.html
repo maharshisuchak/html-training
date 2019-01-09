@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Getter Setter</title>
+</head>
+<body>
+	<p>Preffer for creating the count object: </p>
+	<p id="demo"></p>
+
+	<script type="text/javascript">
+		var obj = {
+			counter = 0,
+			get reset(){
+				this.counter = 0;
+			},
+			get increment(){
+				this.counter++;
+			},
+			get decrement(){
+				this.counter--;
+			},
+			set add(value){
+				this.counter+= value;
+			},
+			set substract(value){
+				this.counter-=value;
+			}
+		};
+
+		obj.reset;
+		obj.add = 5;
+		obj.substract = 1;
+		obj.increment;
+		obj.decrement;
+
+		document.getElementById('demo').innerHTML = obj.counter;
+	</script>
+</body>
+</html>

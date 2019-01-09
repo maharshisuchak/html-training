@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Week Days</title>
+</head>
+<body>
+	<p>Enter the day-number of week :</p>
+	<input id="daynum" type="number" name="daynum">
+	<button onclick="getDay()">Get The Day</button>
+	<br>
+	<p id="day"></p>
+
+	<script type="text/javascript">
+		var day;
+
+		function getDay() {
+			day = document.getElementById('daynum').value;
+
+			if (day == 1) {
+				document.getElementById('day').innerHTML = "Monday";
+			} else if (day == 2) {
+				document.getElementById('day').innerHTML = "Tuesday";
+			} else if (day == 3) {
+				document.getElementById('day').innerHTML = "Wednesday";
+			} else if (day == 4) {	
+				document.getElementById('day').innerHTML = "Thursday";
+			} else if (day == 5) {
+				document.getElementById('day').innerHTML = "Friday";
+			} else if (day == 6) {
+				document.getElementById('day').innerHTML = "Saturday";
+			} else if (day == 7) {
+				document.getElementById('day').innerHTML = "Sunday";
+			} else {
+				document.getElementById('day').innerHTML = "Please enter valid day number.";
+			}
+		}
+	</script>
+</body>
+</html>

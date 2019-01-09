@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Even-Odd</title>
+</head>
+<body>
+	<!--
+		Get the value from the user and call the function
+	-->
+	<p>Enter the value : </p>
+	<input id="inpt1" type="number" name="inpt1">
+	<button onclick="checkNumber()">Check!</button>
+	<br>
+	<p id="number"></p>
+	<!--
+		Check the value for enen odd
+	-->
+	<script type="text/javascript">
+		function checkNumber() {
+			var a;
+			a = document.getElementById('inpt1').value;
+
+			if (a%2 == 0) {
+				document.getElementById('number').innerHTML = a + " is Even.";
+			}
+			else  {
+				document.getElementById('number').innerHTML = a + " is Odd.";
+			}
+		}
+	</script>
+</body>
+</html>

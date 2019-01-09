@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Month</title>
+</head>
+<body>
+	<!--
+		Get value from user and call function on click event
+	-->
+	<p>Enter the Number of Month :</p>
+	<input id="monthnum" type="number" name="monthnum">
+	<button onclick="getMonth()">Get The Month</button>
+	<br>
+	<p id="month"></p>
+
+	<!--
+		define function and evaluate using if-else ladder
+	-->
+	<script type="text/javascript">
+		var month;
+
+		function getMonth() {
+			month = document.getElementById('monthnum').value;
+
+			if (month == 1) {
+				document.getElementById('month').innerHTML = "January";
+			} else if (month == 2) {
+				document.getElementById('month').innerHTML = "February";
+			} else if (month == 3) {
+				document.getElementById('month').innerHTML = "March";
+			} else if (month == 4) {	
+				document.getElementById('month').innerHTML = "April";
+			} else if (month == 5) {
+				document.getElementById('month').innerHTML = "May";
+			} else if (month == 6) {
+				document.getElementById('month').innerHTML = "June";
+			} else if (month == 7) {
+				document.getElementById('month').innerHTML = "July";
+			} else if (month == 8) {	
+				document.getElementById('month').innerHTML = "August";
+			} else if (month == 9) {	
+				document.getElementById('month').innerHTML = "September";
+			} else if (month == 10) {	
+				document.getElementById('month').innerHTML = "Octomber";
+			} else if (month == 11) {	
+				document.getElementById('month').innerHTML = "November";
+			} else if (month == 12) {	
+				document.getElementById('month').innerHTML = "December";
+			} else {
+				document.getElementById('month').innerHTML = "Please enter valid Month.";
+			}
+		}
+	</script>
+</body>

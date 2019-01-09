@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Week Days using Switch-case</title>
+</head>
+<body>
+	<p>Enter the day-number of week :</p>
+	<input id="daynum" type="number" name="daynum">
+	<button onclick="getDay()">Get The Day</button>
+	<br>
+	<p id="day"></p>
+
+	<script type="text/javascript">
+		var day;
+
+		function getDay() {
+			day = Number(document.getElementById('daynum').value);
+
+			switch(day){
+				case 1 : document.getElementById('day').innerHTML = "Monday";
+				break ;
+
+				case 2 : document.getElementById('day').innerHTML = "Tuesday";
+				break ;
+
+				case 3 : document.getElementById('day').innerHTML = "Wednesday";
+				break ;
+
+				case 4 : document.getElementById('day').innerHTML = "Thursday";
+				break ;
+
+				case 5 : document.getElementById('day').innerHTML = "Friday";
+				break ;
+
+				case 6 : document.getElementById('day').innerHTML = "Saturday";
+				break ;
+
+				case 7 : document.getElementById('day').innerHTML = "Sunday";
+				break ;
+
+				default: document.getElementById('day').innerHTML = "Please Enter Valid day";
+			}
+		}
+	</script>
+</body>
+</html>

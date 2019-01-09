@@ -9,12 +9,47 @@
 	index of Ankur : <p id="demo1"></p>
 	last index of Hello : <p id="demo2"></p>
 	search Ankur : <p id="demo3"></p>
+	slice : <p id="demo4"></p>
+	slice by only one parameter : <p id="demo5"></p>
+	substring : <p id="demo6"></p>
+	substr : <p id="demo7"></p>
+	replace : <p id="demo8"></p>
+	uppercase : <p id="demo9"></p>
+	lowercase : <p id="demo10"></p>
+	stringconcat : <p id="demo11"></p>
+	character at givenposition : <p id="demo12"></p>
+	charcode at givenposition : <p id="demo13"></p>
+	string to array : <p id="demo14"></p>
+	
 	<script type="text/javascript">
 		var txt = "Hello, I'm Ankur Javia from Manavadar. I've completed my education from darshan institute rajkot.";
+		var txt1 = "./*+-";
+		var arr = txt1.split("");
+		var txt2 = "";
+		var i;
+		
+
 		document.getElementById('demo').innerHTML = txt.length;
 		document.getElementById('demo1').innerHTML = txt.indexOf('Ankur', 5);
 		document.getElementById('demo2').innerHTML = txt.lastIndexOf('Ankur');
 		document.getElementById('demo3').innerHTML = txt.search('Ankur');
+		document.getElementById('demo4').innerHTML = txt.slice(5, 14);
+		document.getElementById('demo5').innerHTML = txt.slice(5);
+		document.getElementById('demo6').innerHTML = txt.substring(5, 14);
+		document.getElementById('demo7').innerHTML = txt.substr(5);
+		document.getElementById('demo8').innerHTML = txt.replace('darshan', 'marwadi');
+		/* It will not replace case sensitive word & solution is : /string/i
+		   only replace the first word & solution is : /string/g  
+		 */
+		document.getElementById('demo9').innerHTML = txt.toUpperCase();
+		document.getElementById('demo10').innerHTML = txt.toLowerCase();
+		document.getElementById('demo11').innerHTML = txt.concat("",txt1);
+		document.getElementById('demo12').innerHTML = txt.charAt(2);
+		document.getElementById('demo13').innerHTML = txt.charCodeAt(2);
+		for (i=0; i<arr.length; i++){
+			txt2 += arr[i] + "<br>"
+		}
+		document.getElementById('demo14').innerHTML = txt2;
 	</script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+</head>
+<body>
+	<!--
+		Get two value from user and call the function on click evernt
+	-->
+	<p>Please Enter the 1st value :</p>
+	<input id="number1" type="number" name="input1">
+	<br>
+	<p>Please Enter the 2nd value :</p>
+	<input id="number2" type="number" name="input2">
+	<br>
+	<button onclick="addition()"> + </button>
+	<button onclick="substraction()"> - </button>
+	<button onclick="multiplication()"> * </button>
+	<button onclick="division()"> / </button>
+	<br>
+	<p>Answer is :</p>
+	<p id="answer"></p>
+
+	<!--
+		Evaluate the value as per the function call and display the result
+	-->
+
+	<script type="text/javascript">
+		var a,b,ans;
+
+		function addition() {
+			//a = document.getElementById('number1').value;
+			a = Number(document.getElementById('number1').value);
+			//b = document.getElementById('number2').value;
+			b = Number(document.getElementById('number2').value);
+			ans = a + b;
+			document.getElementById('answer').innerHTML = ans;
+		}
+
+		function substraction() {
+			a = document.getElementById('number1').value;
+			b = document.getElementById('number2').value;
+			ans = a - b;
+			document.getElementById('answer').innerHTML = ans;
+		}
+
+		function multiplication() {
+			a = document.getElementById('number1').value;
+			b = document.getElementById('number2').value;
+			ans = a * b;
+			document.getElementById('answer').innerHTML = ans;
+		}
+
+		function division() {
+			a = document.getElementById('number1').value;
+			b = document.getElementById('number2').value;
+			ans = a / b;
+			document.getElementById('answer').innerHTML = ans;
+		}
+	</script>
+</body>
+</html>
