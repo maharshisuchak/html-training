@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Storage</title>
+</head>
+<body>
+	<p>First Name : </p>
+	<input id="personFirstNameId" type="text" name="personFirstName">
+	<p>Last Name : </p>
+	<input id="personLastNameId" type="text" name="personLastName">
+	<p>Age : </p>
+	<input id="personAgeId" type="number" name="personAge">
+	<br>
+	<br>
+	<button onclick="addPersonData()">Add Data</button>
+	<br>
+	<button onclick="displayPersonData()">Display Data</button>
+	<br>
+	<p id="displayData"></p>
+	<br>
+	<button onclick="displayName()">Display Name</button>
+	<p id="displayName"></p>
+	<br>
+	<button onclick="age25()">List of people having 25 year</button>
+	<p id="display25year"></p>
+	<br>
+	<button onclick="above35()">List of people above 35 year</button>
+	<p id="displayAbove35year"></p>
+	<br>
+	<button onclick="above25to35()">List of people 25 to 35 year</button>
+	<p id="displaybetween25to35year"></p>
+	<br>
+	<button onclick="averageAge()">Average Age</button>
+	<p id="displayAverageAge"></p>
+
+
+
+	<script type="text/javascript">
+		var userid = 0;
+		var date;
+		var user, userFirstName, userLastName, userAge, createdAt;
+		var userJsonstr, userJson, userStr;
+		var dataKey = 'person';
+		var person = [];
+		var userArr = [];
+
+		var userFirstNameStr = document.getElementById('personFirstNameId');
+		var userLasrNameStr = document.getElementById('personLastNameId');
+		var userAgeStr =  document.getElementById('personAgeId');
+
+		function addPersonData(){
+			date = new Date();
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+
+			if(userArr != null){
+				userid = userArr.length+1;
+
+				user = {
+				id : userid,
+				firstName : userFirstNameStr.value,
+				lastName : userLasrNameStr.value,
+				age	: userAgeStr.value,
+				createdAt : date
+				};
+			}
+			else {
+
+				user = {
+				id : userid,
+				firstName : userFirstNameStr.value,
+				lastName : userLasrNameStr.value,
+				age	: userAgeStr.value,
+				createdAt : date
+				};
+			}
+
+			
+			
+			person.push(user);
+			userJsonstr = JSON.stringify(person);
+			localStorage.setItem(dataKey,userJsonstr);
+		}
+
+		function displayPersonData() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+
+			for (var i = 0; i < userArr.length; i++) {
+				document.getElementById('displayData').innerHTML += JSON.stringify(userArr[i]) +"<br>";
+			}
+		}
+
+		function displayName() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+
+			for (var i = 0; i < userArr.length; i++) {
+				document.getElementById('displayName').innerHTML += JSON.stringify(userArr[i].firstName) +"<br>";
+			}
+		}
+
+		function age25() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+			
+			for (var i = 0; i < userArr.length; i++) {
+				
+				console.log(userArr[i].age);
+				
+				if(userArr[i].age == 25){
+					document.getElementById('display25year').innerHTML += JSON.stringify(userArr[i].firstName) +"<br>";
+				}
+			}
+		}
+
+		function above35() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+			
+			for (var i = 0; i < userArr.length; i++) {
+				
+				console.log(userArr[i].age);
+				
+				if(userArr[i].age > 35){
+					document.getElementById('displayAbove35year').innerHTML += JSON.stringify(userArr[i].firstName) +"<br>";
+				}
+			}
+		}
+
+		function above25to35() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+			
+			for (var i = 0; i < userArr.length; i++) {
+				
+				console.log(userArr[i].age);
+				
+				if(userArr[i].age >= 25 && userArr[i].age < 35){
+					document.getElementById('displaybetween25to35year').innerHTML += JSON.stringify(userArr[i].firstName) +"<br>";
+				}
+			}
+		}
+
+		function averageAge() {
+			userArr = JSON.parse(localStorage.getItem(dataKey));
+			var sum = 0;
+			for (var i = 0; i < userArr.length; i++) {
+				
+				sum += parseInt(userArr[i].age); 
+			}
+			
+			document.getElementById('displayAverageAge').innerHTML = sum/userArr.length;
+		}
+
+	</script>
+</body>
+</html>

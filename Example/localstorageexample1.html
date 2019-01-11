@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Storage</title>
+
+	<script src="localstoragescript_2.js"></script>
+</head>
+<body>
+	
+		First Name : 
+		<br>
+		<input id="personFirstNameId" type="text" name="personFirstName"> 
+		<br>
+		Last Name : 
+		<br>
+		<input id="personLastNameId" type="text" name="personLastName"> 
+		<br>
+		UserName:
+		<br>
+		<input id="personUserNameId" type="text" name="personUserName">
+		<br>
+		Age : 
+		<br>
+		<input id="personAgeId" type="number" name="personAge" onkeydown="onKeyDown(event)">	
+		<br>
+		<br>
+		<button id="addDataButton" onclick="addPersonData()" >Add Data</button> 
+		<br>
+		<br>
+
+
+
+	<button onclick="displayPersonData()">Display Data</button>
+	<br>
+	<p id="displayData"></p>
+	<br>
+	<button onclick="displayName()">Display Name</button>
+	<p id="displayName"></p>
+	<br>
+	<button onclick="age25()">List of people having 25 year</button>
+	<p id="display25year"></p>
+	<br>
+	<button onclick="above35()">List of people above 35 year</button>
+	<p id="displayAbove35year"></p>
+	<br>
+	<button onclick="above25to35()">List of people 25 to 35 year</button>
+	<p id="displaybetween25to35year"></p>
+	<br>
+	<button onclick="averageAge()">Average Age</button>
+	<p id="displayAverageAge"></p>
+
+</body>
+</html>
