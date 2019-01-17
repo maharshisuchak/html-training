@@ -82,7 +82,12 @@ function displayPersonData() {
 	}	
 }
 
-function displayName() {
+function fullDetail(item, index) {
+	var fullDetail = [item.firstName, item.lastName, item.userName, item.age] +"<br>";
+	return fullDetail	;
+}
+
+/*function displayName() {
 	if(localStorage.getItem(dataKey)){
 		userArr = JSON.parse(localStorage.getItem(dataKey));
 		document.getElementById('displayName').innerHTML += userArr.map(nameOnly);
@@ -91,12 +96,24 @@ function displayName() {
 	}	
 }
 
+function nameOnly(item, index){
+	var nameOnly = [item.firstName].join(',') ;
+	return nameOnly;
+}*/
+
 function age25() {
 	if(localStorage.getItem(dataKey)){
 		userArr = JSON.parse(localStorage.getItem(dataKey));
 		document.getElementById('display25year').innerHTML += userArr.map(userAbove25);
 	}else{
 		alert('There is no data in the localStorage.');
+	}
+}
+
+function userAbove25(item, index) {
+	if(item.age = 25){
+		var userAbove25 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
+		return userAbove25;
 	}
 }
 
@@ -109,6 +126,13 @@ function above35() {
 	}
 }
 
+function userAbove35(item, index) {
+	if(item.age > 35){
+		var userAbove35 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
+		return userAbove35;
+	}
+}
+
 function above25to35() {
 	if(localStorage.getItem(dataKey)){
 		userArr = JSON.parse(localStorage.getItem(dataKey));
@@ -118,43 +142,19 @@ function above25to35() {
 	}
 }
 
+function user25to35(item, index) {
+	if(item.age >= 25 && item.age < 35){
+		var user25to35 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
+		return user25to35;
+	}
+}
+
 function averageAge() {
 	if(localStorage.getItem(dataKey)){
 		userArr = JSON.parse(localStorage.getItem(dataKey));
 		document.getElementById('displayAverageAge').innerHTML = userArr.map(ageAverage).reduceRight(getSum) / userArr.length;
 	}else{
 		alert('There is no data in the localStorage.');
-	}
-}
-
-function fullDetail(item, index) {
-	var fullDetail = [item.firstName, item.lastName, item.userName, item.age] +"<br>";
-	return fullDetail;
-}
-
-function nameOnly(item, index){
-	var nameOnly = [item.firstName].join(',') ;
-	return nameOnly;
-}
-
-function userAbove25(item, index) {
-	if(item.age = 25){
-		var userAbove25 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
-		return userAbove25;
-	}
-}
-
-function userAbove35(item, index) {
-	if(item.age > 35){
-		var userAbove35 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
-		return userAbove35;
-	}
-}
-
-function user25to35(item, index) {
-	if(item.age >= 25 && item.age < 35){
-		var user25to35 = [item.firstName, item.lastName, item.userName, item.age] + "<br>";
-		return user25to35;
 	}
 }
 

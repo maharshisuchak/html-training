@@ -3,39 +3,33 @@
 <head>
 	<title>Local Storage</title>
 
-	<script src="localstoragescript_2.js"></script>
+	<script src="localstoragescript_3.js"></script>
 </head>
 <body>
 	
-		First Name : 
-		<br>
-		<input id="personFirstNameId" type="text" name="personFirstName"> 
-		<br>
-		Last Name : 
-		<br>
-		<input id="personLastNameId" type="text" name="personLastName"> 
-		<br>
-		UserName:
-		<br>
-		<input id="personUserNameId" type="text" name="personUserName">
-		<br>
-		Age : 
-		<br>
-		<input id="personAgeId" type="number" name="personAge" onkeydown="onKeyDown(event)">	
-		<br>
-		<br>
-		<button id="addDataButton" onclick="addPersonData()" >Add Data</button> 
-		<br>
-		<br>
-
-
-
+	First Name : 
+	<br>
+	<input id="personFirstNameId" type="text" name="personFirstName"> 
+	<br>
+	Last Name : 
+	<br>
+	<input id="personLastNameId" type="text" name="personLastName"> 
+	<br>
+	UserName:
+	<br>
+	<input id="personUserNameId" type="text" name="personUserName">
+	<br>
+	Age : 
+	<br>
+	<input id="personAgeId" type="number" name="personAge" onkeydown="onKeyDown(event)">	
+	<br>
+	<br>
+	<button id="addDataButton" onclick="addPersonData()" >Add Data</button> 
+	<br>
+	<br>
 	<button onclick="displayPersonData()">Display Data</button>
 	<br>
 	<p id="displayData"></p>
-	<br>
-	<button onclick="displayName()">Display Name</button>
-	<p id="displayName"></p>
 	<br>
 	<button onclick="age25()">List of people having 25 year</button>
 	<p id="display25year"></p>
@@ -48,6 +42,30 @@
 	<br>
 	<button onclick="averageAge()">Average Age</button>
 	<p id="displayAverageAge"></p>
+	<br>
+	<button onclick="nameStartig_A()">Name Starting with A</button>
+	<br>
+	<p id="display_Name_Starting_with_A"></p>
+	<br>
+	<button onclick="nameContaining_ur()">Name containing ur</button>
+	<br>
+	<p id="display_Name_Which_contain_ur"></p>
+	<br>
+	<button onclick="namewithFixedCharacter()">Array of 2,3,4 character of name</button>
+	<br>
+	<p id="arrayof_name_with_fixedcharacter"></p>
+	<br>
+	<button onclick="nameReplaceWithanotherCharacter()">Replace a with o</button>
+	<br>
+	<p id="array_after_replacing_character"></p>
+	<br>
+	<button onclick="displayDataWithFullName()">Data with fullName</button>
+	<br>
+	<p id="dataWithFullName"></p>
+	<br>
+	<button onclick="countUser()">Total user</button>
+	<br>
+	<p id="totaluser"></p>
 
 </body>
 </html>

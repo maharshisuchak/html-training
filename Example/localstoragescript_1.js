@@ -96,7 +96,7 @@ function averageAge() {
 	userArr = JSON.parse(localStorage.getItem(dataKey));
 	var sum = 0;
 	for (var i = 0; i < userArr.length; i++) {
-		sum += parseInt(userArr[i].age); 
+		sum += parseInt(userArr[i].age); 	
 	}
 			
 	document.getElementById('displayAverageAge').innerHTML = sum/userArr.length;
