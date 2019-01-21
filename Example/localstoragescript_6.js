@@ -5,6 +5,7 @@ var dataKey = 'person';
 var userArr = [];
 var averageOfAge = [];
 var msg = 'There is no data in the localStorage.';
+var arr;
 
 var personFirstNameId = 'personFirstNameId';
 var personLastNameId = 'personLastNameId';
@@ -26,9 +27,24 @@ function checkLocalStorage(){
 	let arr1 = [];
 	if(localStorage.getItem(dataKey)){
 		arr1 = JSON.parse(localStorage.getItem(dataKey));
-		console.log(arr1);
 	}
 	return arr1;
+}
+
+function bindHTML(elementId, functionName){
+	if(arr.length > 0 ){
+		document.getElementById(elementId).innerHTML += JSON.stringify(functionName) 	
+	}else{
+		alert(msg);
+	}
+}
+
+function bindHTMLwithMap(elementId, functionName){
+	if(arr.length > 0 ){
+		document.getElementById(elementId).innerHTML += JSON.stringify(arr.map(functionName))
+	}else{
+		alert(msg);
+	}
 }
 
 function onKeyDown(event){
@@ -47,7 +63,7 @@ function addPersonData(){
 	var	userName = document.getElementById(personUserNameId).value;
 	var age =  document.getElementById(personAgeId).value;
 	
-	userArr= checkLocalStorage();
+	userArr = checkLocalStorage();
 
 	if(userArr.length){
 		userId = parseInt(userArr[userArr.length -1].userId) + 1;
@@ -88,14 +104,8 @@ function addPersonData(){
 
 function displayPersonData() {
 	document.getElementById(displayData).innerHTML = '';
-	let arr = checkLocalStorage();
-
-	if(arr.length > 0 ){
-		document.getElementById(displayData).innerHTML = JSON.stringify(arr);
-		//+= JSON.stringify(userArr.map(fullDetail)) 	
-	}else{
-		alert(msg);
-	}
+	arr = checkLocalStorage();
+	bindHTML(displayData, arr);
 }
 
 function fullDetail(item) {
@@ -104,99 +114,102 @@ function fullDetail(item) {
 
 function age25() {
 	document.getElementById(display25year).innerHTML = '';
-			var age25_= userArr.filter(
-			function(user){
-				return user.age == 25
-			}
-		)
-	checkLocalStorage() ? document.getElementById(display25year).innerHTML += JSON.stringify(age25_) : alert(msg);
-	
+	arr = checkLocalStorage();
+	var age25_= arr.filter(
+		function(user){
+			return user.age == 25
+		}
+	)
+	bindHTML(display25year,age25_);
 }
 
 function above35() {
 	document.getElementById(displayAbove35year).innerHTML = '';
 	// user flter method here as above 25 age function 
-
-		var ageGreaterThan35 = userArr.filter(
-			function(user){
-				return user.age > 35
-			}
-		)
-	checkLocalStorage() ? document.getElementById(displayAbove35year).innerHTML += JSON.stringify(ageGreaterThan35) : alert(msg);
+	arr = checkLocalStorage();
+	var ageGreaterThan35 = arr.filter(
+		function(user){
+			return user.age > 35
+		}
+	)
+	bindHTML(displayAbove35year,ageGreaterThan35);
 }
-
 // same as above rempve un-neccesary code
 function above25to35() {
 	document.getElementById(displaybetween25to35year).innerHTML = '';
-	checkLocalStorage();
+	arr = checkLocalStorage();
 	// userArr.map(user25to35);
 
-	var ageFrom25to34 = userArr.filter(
+	var ageFrom25to34 = arr.filter(
 		function(user){
 			return user.age >= 25 && user.age <= 35;
 		}
 	)
-	checkLocalStorage() ? document.getElementById(displaybetween25to35year).innerHTML += JSON.stringify(ageFrom25to34) : alert(msg);
+	bindHTML(displaybetween25to35year,ageFrom25to34);
 }
-
 // arrayreduce function use
 function averageAge() {
 	document.getElementById(displayAverageAge).innerHTML = '';
+	arr = checkLocalStorage();
 	// reduce 
-		var total = userArr.reduceRight(function(total, user){
+		var total = arr.reduceRight(function(total, user){
 			return total + Number(user.age);
 		},0);
-	checkLocalStorage() ? document.getElementById(displayAverageAge).innerHTML = total / userArr.length : alert(msg);
+	if(arr.length > 0 ){
+		document.getElementById(displayAverageAge).innerHTML = total / arr.length
+	}else{
+		alert(msg);
+	}
 }
-
 // filter
 function nameStartig_A(){
 	document.getElementById(display_Name_Starting_with_A).innerHTML = '';
-	// userArr.map(nameStartingFromA);
-
-	var userNameStartingWithA = userArr.filter(
+	arr = checkLocalStorage();
+	var userNameStartingWithA = arr.filter(
 		function(user){
-			return user.firstName.indexOf('a') == 0;
+			return user.firstName.toLowerCase().indexOf('a') == 0;
 		}
 	)
-	console.log(userNameStartingWithA);
-	checkLocalStorage() ? document.getElementById(display_Name_Starting_with_A).innerHTML += JSON.stringify(userNameStartingWithA) : alert(msg);
+	bindHTML(display_Name_Starting_with_A,userNameStartingWithA);
 }
 // using filter and indexof
 function nameContaining_ur(){
 	document.getElementById(display_Name_Which_contain_ur).innerHTML = '';
-		var userFirstNameContaining_ur = userArr.filter(
+	arr = checkLocalStorage();
+		var userFirstNameContaining_ur = arr.filter(
 			function(user){
 				return user.firstName.indexOf('ur') >= 0;
 			}
-		)
-	checkLocalStorage() ? document.getElementById(display_Name_Which_contain_ur).innerHTML += JSON.stringify(userFirstNameContaining_ur) : alert(msg);
+	)
+	bindHTML(display_Name_Which_contain_ur,userFirstNameContaining_ur);
 }
 
 function namewithFixedCharacter(){
 	document.getElementById(arrayof_name_with_fixedcharacter).innerHTML = '';
-	checkLocalStorage() ? document.getElementById(arrayof_name_with_fixedcharacter).innerHTML += JSON.stringify(userArr.map(dataWithChangerName)) : alert(msg);
+	arr = checkLocalStorage();
+	bindHTMLwithMap(arrayof_name_with_fixedcharacter, dataWithChangerName);
 }
 
 function dataWithChangerName(item){
-	console.log(item.firstName.slice(1,4));
 	item.firstName = item.firstName.slice(1,4);
 	return item;
 }
 
 function nameReplaceWithanotherCharacter(){
 	document.getElementById(array_after_replacing_character).innerHTML = '';
-	checkLocalStorage() ? document.getElementById(array_after_replacing_character).innerHTML += JSON.stringify(userArr.map(dataWithReplacedChar)) : alert(msg);
+	arr = checkLocalStorage();
+	bindHTMLwithMap(array_after_replacing_character, dataWithReplacedChar);
 }
 
 function dataWithReplacedChar(item){
-	item.firstName = item.firstName.replace(/[a,A]/g, 'o');
+	item.firstName = item.firstName.replace('a', 'o').replace('A','O');
 	return item;
 }
 
 function displayDataWithFullName(){
 	document.getElementById(dataWithFullName).innerHTML = '';
-	checkLocalStorage() ? document.getElementById(dataWithFullName).innerHTML += JSON.stringify(userArr.map(dataFullName)) : alert(msg);
+	arr = checkLocalStorage();
+	bindHTMLwithMap(dataWithFullName, dataFullName);
 }
 
 function dataFullName(item){
@@ -206,5 +219,10 @@ function dataFullName(item){
 
 function countUser(){
 	document.getElementById(totaluser).innerHTML = '';
-	checkLocalStorage() ?document.getElementById(totaluser).innerHTML = userArr.length : alert(msg);
+	arr = checkLocalStorage();
+	if(arr.length > 0 ){
+		document.getElementById(totaluser).innerHTML += arr.length
+	}else{
+		alert(msg);
+	}
 }

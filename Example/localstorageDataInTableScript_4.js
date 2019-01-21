@@ -11,8 +11,9 @@ window.onload = display_data_in_table;
 
 function onKeyDown(event){
 	if(event.code == 'Enter'){
-		addDataToStorage();
+		addPersonData();
 	}
+	console.log(event);
 }
 
 // check for the existing data
@@ -52,37 +53,71 @@ function addDataToStorage() {
 		alert('Please Enter Age')
 	}
 	else {
-		var currentUserIndex = userArray.findIndex((elem)=>{
-			return elem.userId == id;
-		});
-		if(currentUserIndex>-1){
-			var oldUserName= userArray[currentUserIndex].userName;
-			if(userName != oldUserName && userNameValidator()){
-				return;
-			} 
+		for(let i=0; i<userArray.length; i++){
+			checkUserName = userArray[i].userName == userName;
+			if(checkUserName){
+				break;
+			}
+		}
 
-			userArray[currentUserIndex].firstName = document.getElementById('firstNameId').value;
-			userArray[currentUserIndex].lastName = document.getElementById('lastNameId').value;
-			userArray[currentUserIndex].userName = document.getElementById('userNameId').value;
-			userArray[currentUserIndex].age = document.getElementById('ageId').value;
-		}else{
-			if(userNameValidator()){
-				return;
+		if(checkUserName){
+			alert('UserName is already exist')
+			return;
+		}
+		if(userArray.length){
+			userId = parseInt(userArray[userArray.length -1].userId) + 1;  
+		}
+		
+		if(id > 0){
+			for(let i=0; i<userArray.length; i++){
+				if(id == userArray[i].userId){
+					userArray[i].firstName = document.getElementById('firstNameId').value;
+					userArray[i].lastName = document.getElementById('lastNameId').value;
+					userArray[i].userName = document.getElementById('userNameId').value;
+					userArray[i].age = document.getElementById('ageId').value;
+				}
 			}
-			if(userArray.length){
-				userId = parseInt(userArray[userArray.length -1].userId) + 1;  
-			}
+			document.getElementById('add_data_buton_Id').innerHTML = 'Add Data';
+			document.getElementById('add_data_buton_Id').value = 0;
+		}
+		else{
 			user = {userId, firstName, lastName, userName, age, createdAt};
-			userArray.push(user);	
-		}			
-	
+			userArray.push(user);
+		}
+		
 		userArrayString = JSON.stringify(userArray);
 		localStorage.setItem(dataKey, userArrayString);
 		
 		display_data_in_table();
-		resetValue();
+
+		document.getElementById('firstNameId').value = '';
+		document.getElementById('lastNameId').value = '';
+		document.getElementById('userNameId').value = '';
+		document.getElementById('ageId').value = '';
 	}
 }
+
+/*function updateData(uid){
+	var array1 = checkLocalStorage();
+
+	for(let i=0; i<array1.length; i++){
+		if(uid == array1[i].userId){
+			array1[i].firstName = document.getElementById('firstNameId').value;
+			array1[i].lastName = document.getElementById('lastNameId').value;
+			array1[i].userName = document.getElementById('userNameId').value;
+			array1[i].age = document.getElementById('ageId').value;
+		}
+	}
+
+	localStorage.setItem(dataKey,JSON.stringify(array1));
+	
+	display_data_in_table();
+
+	document.getElementById('firstNameId').value = '';
+		document.getElementById('lastNameId').value = '';
+		document.getElementById('userNameId').value = '';
+		document.getElementById('ageId').value = '';
+}*/
 
 function display_data_in_table(){
 	userDetailArray = checkLocalStorage();
@@ -91,7 +126,7 @@ function display_data_in_table(){
 		let userDetailTable = `<table id ='user_data_table' width=100%>
 							   <caption> User Detail </caption>
 							   <tr>
-							   <th> User Id </th>
+							   <th> Id </th>
 							   <th> First Name </th>
 							   <th> Last Name </th>
 							   <th> User-Name </th>
@@ -149,40 +184,11 @@ function updateDatainStorage(id_of_user){
 
 //when press remove : get the id and remove the object from the array and the change should be displayed in table
 function removeDataFromStorage(id_of_user){
-	resetValue();
-
 	var user_id_update = id_of_user;
 	var array_update = checkLocalStorage();
 
-	var updated_array = array_update.filter(
-			function(user){
-				return user.userId != user_id_update;
-			}
-		)
+	const updated_array = array_update.filter(user => user.userId != user_id_update )
 	
 	localStorage.setItem(dataKey, JSON.stringify(updated_array));
 	display_data_in_table();
-}
-
-function resetValue(){
-	document.getElementById('add_data_buton_Id').innerHTML = 'Add Data';
-	document.getElementById('add_data_buton_Id').value = 0;
-
-	document.getElementById('firstNameId').value = '';
-	document.getElementById('lastNameId').value = '';
-	document.getElementById('userNameId').value = '';
-	document.getElementById('ageId').value = '';
-}
-
-function userNameValidator(){
-	for(let i=0; i<userArray.length; i++){
-		checkUserName = userArray[i].userName == userName;
-		if(checkUserName){
-			break;
-		}
-	}		
-	if(checkUserName){
-		alert('UserName is already exist')
-		return true;
-	}
 }

@@ -9,6 +9,13 @@ var dataKey = 'userDetail';
 
 window.onload = display_data_in_table;
 
+function onKeyDown(event){
+	if(event.code == 'Enter'){
+		addPersonData();
+	}
+	console.log(event);
+}
+
 // check for the existing data
 function checkLocalStorage(){
 	let arr = [];

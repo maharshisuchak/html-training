@@ -4,9 +4,7 @@ var user, userJsonstr;
 var dataKey = 'person';
 var userArr = [];
 var averageOfAge = [];
-var msg = 'There is no data in the localStorage.';
-var arr;
-
+var revisedArr = [];
 var personFirstNameId = 'personFirstNameId';
 var personLastNameId = 'personLastNameId';
 var personUserNameId = 'personUserNameId';
@@ -22,30 +20,10 @@ var displayAverageAge = 'displayAverageAge';
 var display_Name_Starting_with_A = 'display_Name_Starting_with_A';
 var display_Name_Which_contain_ur = 'display_Name_Which_contain_ur';
 var arrayof_name_with_fixedcharacter = 'arrayof_name_with_fixedcharacter';
+var msg = 'There is no data in the localStorage.';
 
-function checkLocalStorage(){
-	let arr1 = [];
-	if(localStorage.getItem(dataKey)){
-		arr1 = JSON.parse(localStorage.getItem(dataKey));
-	}
-	return arr1;
-}
-
-function bindHTML(elementId, functionName){
-	if(arr.length > 0 ){
-		document.getElementById(elementId).innerHTML += JSON.stringify(functionName) 	
-	}else{
-		alert(msg);
-	}
-}
-
-function bindHTMLwithMap(elementId, functionName){
-	if(arr.length > 0 ){
-		document.getElementById(elementId).innerHTML += JSON.stringify(arr.map(functionName))
-	}else{
-		alert(msg);
-	}
-}
+var checkStorage = localStorage.getItem(dataKey);
+var jsonparse = JSON.parse(localStorage.getItem(dataKey));
 
 function onKeyDown(event){
 	if(event.code == 'Enter'){
@@ -63,22 +41,27 @@ function addPersonData(){
 	var	userName = document.getElementById(personUserNameId).value;
 	var age =  document.getElementById(personAgeId).value;
 	
-	userArr = checkLocalStorage();
-
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+	}else{
+		userArr  =[];
+	}
 	if(userArr.length){
 		userId = parseInt(userArr[userArr.length -1].userId) + 1;
 	}
 
 	for (var i = 0; i < userArr.length; i++){
-		checkUserName = userArr[i].userName == userName;
+		if(userArr[i].userName == userName){
+			checkUserName = true;
+		}
 	}
 
-	if(!firstName){
+	if(firstName == ''){
 		alert('Enter FirstName.')
 	}
-	else if(!lastName){
+	else if(lastName == ''){
 		alert('Enter LastName.')
-	}	
+	}
 	else if(userName ==''){
 		alert('Enter UserName.')
 	}
@@ -87,6 +70,7 @@ function addPersonData(){
 	}
 	else if(checkUserName == true){
 		alert('username is already occupied.')
+		document.getElementById(personUserNameId).value = '';
 	}
 	else{
 		user = {userId,firstName,lastName,userName,age,createdAt};
@@ -103,125 +87,186 @@ function addPersonData(){
 }
 
 function displayPersonData() {
-	document.getElementById(displayData).innerHTML = '';
-	arr = checkLocalStorage();
-	bindHTML(displayData, arr);
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		document.getElementById(displayData).innerHTML += JSON.stringify(userArr.map(fullDetail));
+	}else{
+		alert(msg);
+	}	
 }
 
-function fullDetail(item) {
+function fullDetail(item, index) {
 	return item;
 }
 
 function age25() {
-	document.getElementById(display25year).innerHTML = '';
-	arr = checkLocalStorage();
-	var age25_= arr.filter(
-		function(user){
-			return user.age == 25
-		}
-	)
-	bindHTML(display25year,age25_);
-}
-
-function above35() {
-	document.getElementById(displayAbove35year).innerHTML = '';
-	// user flter method here as above 25 age function 
-	arr = checkLocalStorage();
-	var ageGreaterThan35 = arr.filter(
-		function(user){
-			return user.age > 35
-		}
-	)
-	bindHTML(displayAbove35year,ageGreaterThan35);
-}
-// same as above rempve un-neccesary code
-function above25to35() {
-	document.getElementById(displaybetween25to35year).innerHTML = '';
-	arr = checkLocalStorage();
-	// userArr.map(user25to35);
-
-	var ageFrom25to34 = arr.filter(
-		function(user){
-			return user.age >= 25 && user.age <= 35;
-		}
-	)
-	bindHTML(displaybetween25to35year,ageFrom25to34);
-}
-// arrayreduce function use
-function averageAge() {
-	document.getElementById(displayAverageAge).innerHTML = '';
-	arr = checkLocalStorage();
-	// reduce 
-		var total = arr.reduceRight(function(total, user){
-			return total + Number(user.age);
-		},0);
-	if(arr.length > 0 ){
-		document.getElementById(displayAverageAge).innerHTML = total / arr.length
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(userAbove25);
+		document.getElementById(display25year).innerHTML += JSON.stringify(revisedArr);
 	}else{
 		alert(msg);
 	}
 }
-// filter
-function nameStartig_A(){
-	document.getElementById(display_Name_Starting_with_A).innerHTML = '';
-	arr = checkLocalStorage();
-	var userNameStartingWithA = arr.filter(
-		function(user){
-			return user.firstName.toLowerCase().indexOf('a') == 0;
-		}
-	)
-	bindHTML(display_Name_Starting_with_A,userNameStartingWithA);
+
+function userAbove25(item, index) {
+	if(item.age == 25){
+		revisedArr.push(item);
+	}
 }
-// using filter and indexof
+
+function above35() {
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(userAbove35);
+		document.getElementById(displayAbove35year).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
+}
+
+function userAbove35(item, index) {
+	if(item.age > 35){
+		revisedArr.push(item);
+	}
+}
+
+function above25to35() {
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(user25to35);
+		document.getElementById(displaybetween25to35year).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
+}
+
+function user25to35(item, index) {
+	if(item.age >= 25 && item.age < 35){
+		revisedArr.push(item);
+	}
+}
+
+function averageAge() {
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		document.getElementById(displayAverageAge).innerHTML = userArr.map(ageAverage).reduceRight(getSum) / userArr.length;
+	}else{
+		alert(msg);
+	}
+}
+
+function ageAverage(item, index) {
+	return parseInt(item.age);
+}
+
+function getSum(total, num) {
+	return total + num;
+}
+
+function nameStartig_A(){
+	revisedArr = [];
+
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(nameStartingFromA);
+		document.getElementById(display_Name_Starting_with_A).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
+}
+
+function nameStartingFromA(item, index){
+	var nameWithA =  [item.firstName].toString().toLowerCase() ;
+	console.log(nameWithA);
+
+	if(nameWithA.charAt(0) == 'a'){
+		revisedArr.push(item);
+	}
+}
+
 function nameContaining_ur(){
-	document.getElementById(display_Name_Which_contain_ur).innerHTML = '';
-	arr = checkLocalStorage();
-		var userFirstNameContaining_ur = arr.filter(
-			function(user){
-				return user.firstName.indexOf('ur') >= 0;
-			}
-	)
-	bindHTML(display_Name_Which_contain_ur,userFirstNameContaining_ur);
+	revisedArr = [];
+
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(namecontain_ur);
+		document.getElementById(display_Name_Which_contain_ur).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
+}
+
+function namecontain_ur(item, index){
+	var nameContainUr = [item.firstName].toString().toLowerCase();
+	var patt = /(ur)/;
+
+	if(nameContainUr.match(patt)){
+		revisedArr.push(item);
+	}
 }
 
 function namewithFixedCharacter(){
-	document.getElementById(arrayof_name_with_fixedcharacter).innerHTML = '';
-	arr = checkLocalStorage();
-	bindHTMLwithMap(arrayof_name_with_fixedcharacter, dataWithChangerName);
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(dataWithChangerName);
+		document.getElementById(arrayof_name_with_fixedcharacter).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
 }
 
-function dataWithChangerName(item){
-	item.firstName = item.firstName.slice(1,4);
-	return item;
+function dataWithChangerName(item, index){
+	var nameFirst = [item.firstName].toString();
+	console.log(nameFirst.slice(1,4));
+	item.firstName = nameFirst.slice(1,4);
+	revisedArr.push(item);
 }
 
 function nameReplaceWithanotherCharacter(){
-	document.getElementById(array_after_replacing_character).innerHTML = '';
-	arr = checkLocalStorage();
-	bindHTMLwithMap(array_after_replacing_character, dataWithReplacedChar);
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(dataWithReplacedChar);
+		document.getElementById(array_after_replacing_character).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
 }
 
-function dataWithReplacedChar(item){
-	item.firstName = item.firstName.replace('a', 'o').replace('A','O');
-	return item;
+function dataWithReplacedChar(item, index){
+	var nameOld = [item.firstName].toString();	
+	item.firstName = nameOld.replace(/[a,A]/g, 'o');
+	revisedArr.push(item);
 }
 
-function displayDataWithFullName(){
-	document.getElementById(dataWithFullName).innerHTML = '';
-	arr = checkLocalStorage();
-	bindHTMLwithMap(dataWithFullName, dataFullName);
+function dataWithFullName(){
+	revisedArr = [];
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		userArr.map(dataFullName);
+		document.getElementById(dataWithFullName).innerHTML += JSON.stringify(revisedArr);
+	}else{
+		alert(msg);
+	}
 }
 
-function dataFullName(item){
-	item.fullName = item.firstName.concat(' ',item.lastName);
-	return item;
+function dataFullName(item, index){
+	var fName = [item.firstName].toString();
+	var lName = [item.lastName].toString();
+
+	item.fullName = fName.concat(' ',lName);
+	revisedArr.push(item);	
 }
 
 function countUser(){
-	document.getElementById(totaluser).innerHTML = '';
-	arr = checkLocalStorage();
-	if(arr.length > 0 ){
-		document.getElementById(totaluser).innerHTML += arr.length
+	if(localStorage.getItem(dataKey)){
+		userArr = jsonparse;
+		document.getElementById(totaluser).innerHTML = userArr.length;
 	}else{
 		alert(msg);
 	}

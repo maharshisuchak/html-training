@@ -27,11 +27,11 @@
 	<br>
 	Age : 
 	<br>
-	<input id="ageId" type="number" name="age">
+	<input id="ageId" type="number" name="age" onkeydown="onKeyDown(event)">
 	<br>
 	<br>
-	<button id="add_data_buton_Id" onclick="addDataToStorage()">Add Data</button> 
+	<button id="add_data_buton_Id" value="0" onclick="addDataToStorage()">Add Data</button> 
 	<hr>
-	<div id="userData">
+	<div id="userData"></div>
 </body>
 </html>
