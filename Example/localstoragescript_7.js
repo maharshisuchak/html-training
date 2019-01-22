@@ -23,7 +23,7 @@ var display_Name_Starting_with_A = 'display_Name_Starting_with_A';
 var display_Name_Which_contain_ur = 'display_Name_Which_contain_ur';
 var arrayof_name_with_fixedcharacter = 'arrayof_name_with_fixedcharacter';
 
-function checkLocalStorage(){
+checkLocalStorage = () => {
 	let arr1 = [];
 	if(localStorage.getItem(dataKey)){
 		arr1 = JSON.parse(localStorage.getItem(dataKey));
@@ -31,7 +31,7 @@ function checkLocalStorage(){
 	return arr1;
 }
 
-function bindHTML(elementId, functionName){
+bindHTML = (elementId, functionName) => {
 	if(arr.length > 0 ){
 		document.getElementById(elementId).innerHTML += JSON.stringify(functionName) 	
 	}else{
@@ -39,7 +39,7 @@ function bindHTML(elementId, functionName){
 	}
 }
 
-function bindHTMLwithMap(elementId, functionName){
+bindHTMLwithMap = (elementId, functionName) => {
 	if(arr.length > 0 ){
 		document.getElementById(elementId).innerHTML += JSON.stringify(arr.map(functionName))
 	}else{
@@ -47,14 +47,14 @@ function bindHTMLwithMap(elementId, functionName){
 	}
 }
 
-function onKeyDown(event){
+onKeyDown = (event) => {
 	if(event.code == 'Enter'){
 		addPersonData();
 	}
 	console.log(event);
 }
 
-function addPersonData(){
+addPersonData = () => {
 	createdAt = new Date();
 	checkUserName = false;
 
@@ -102,20 +102,20 @@ function addPersonData(){
 	}
 }
 
-function displayPersonData() {
+displayPersonData = () => {
 	document.getElementById(displayData).innerHTML = '';
 	arr = checkLocalStorage();
 	bindHTML(displayData, arr);
 }
 
-function age25() {
+age25 = () => {
 	document.getElementById(display25year).innerHTML = '';
 	arr = checkLocalStorage();
 	const age25_= arr.filter(user => user.age == 25 )
 	bindHTML(display25year,age25_);
 }
 
-function above35() {
+above35 = () => {
 	document.getElementById(displayAbove35year).innerHTML = '';
 	// user flter method here as above 25 age function 
 	arr = checkLocalStorage();
@@ -123,7 +123,7 @@ function above35() {
 	bindHTML(displayAbove35year,ageGreaterThan35);
 }
 // same as above rempve un-neccesary code
-function above25to35() {
+above25to35 = () => {
 	document.getElementById(displaybetween25to35year).innerHTML = '';
 	arr = checkLocalStorage();
 	// userArr.map(user25to35);
@@ -132,7 +132,7 @@ function above25to35() {
 	bindHTML(displaybetween25to35year,ageFrom25to34);
 }
 // arrayreduce function use
-function averageAge() {
+averageAge = () => {
 	document.getElementById(displayAverageAge).innerHTML = '';
 	arr = checkLocalStorage();
 	// reduce 
@@ -144,21 +144,21 @@ function averageAge() {
 	}
 }
 // filter
-function nameStartig_A(){
+nameStartig_A = () => {
 	document.getElementById(display_Name_Starting_with_A).innerHTML = '';
 	arr = checkLocalStorage();
 	const userNameStartingWithA = arr.filter(user => user.firstName.toLowerCase().indexOf('a') == 0)
 	bindHTML(display_Name_Starting_with_A,userNameStartingWithA);
 }
 // using filter and indexof
-function nameContaining_ur(){
+nameContaining_ur = () => {
 	document.getElementById(display_Name_Which_contain_ur).innerHTML = '';
 	arr = checkLocalStorage();
 	const userFirstNameContaining_ur = arr.filter(user => user.firstName.indexOf('ur') >= 0)
 	bindHTML(display_Name_Which_contain_ur,userFirstNameContaining_ur);
 }
 
-function namewithFixedCharacter(){
+namewithFixedCharacter = () => {
 	document.getElementById(arrayof_name_with_fixedcharacter).innerHTML = '';
 	arr = checkLocalStorage();
 	bindHTMLwithMap(arrayof_name_with_fixedcharacter, dataWithChangerName);
@@ -169,7 +169,7 @@ const dataWithChangerName = item => {
 	return item;
 }
 
-function nameReplaceWithanotherCharacter(){
+nameReplaceWithanotherCharacter = () => {
 	document.getElementById(array_after_replacing_character).innerHTML = '';
 	arr = checkLocalStorage();
 	bindHTMLwithMap(array_after_replacing_character, dataWithReplacedChar);
@@ -180,7 +180,7 @@ const dataWithReplacedChar = item => {
 	return item;
 }
 
-function displayDataWithFullName(){
+displayDataWithFullName = () => {
 	document.getElementById(dataWithFullName).innerHTML = '';
 	arr = checkLocalStorage();
 	bindHTMLwithMap(dataWithFullName, dataFullName);
@@ -191,7 +191,7 @@ const dataFullName = item => {
 	return item;
 }
 
-function countUser(){
+countUser = () => {
 	document.getElementById(totaluser).innerHTML = '';
 	arr = checkLocalStorage();
 	if(arr.length > 0 ){

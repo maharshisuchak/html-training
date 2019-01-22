@@ -5,7 +5,8 @@ var user;
 var userArray = [];
 var userDetailArray = [];
 var userArrayString;
-var dataKey = 'userDetail'; 
+var dataKey = 'userDetail';
+var userData = '';
 var checkUserName = true;
 
 window.onload = display_data_in_table;
@@ -84,52 +85,74 @@ function addDataToStorage() {
 }
 
 function display_data_in_table(){
-	var userData = '';
+	var div_displaydata = document.getElementById('userData');
+	div_displaydata.innerHTML = '';
 	userDetailArray = checkLocalStorage();
 
 	if(userDetailArray.length > 0){
-		let userDetailTable = `<table id ='user_data_table' width=100%>
-							   <caption> User Detail </caption>
-							   <tr>
-							   <th> User Id </th>
-							   <th> First Name </th>
-							   <th> Last Name </th>
-							   <th> User-Name </th>
-							   <th> Age </th>
-							   <th> Created At </th>
-							   <th colspan='2'>	Action </th>
-							   </tr>`;
-		
-		for(let i=0; i < userDetailArray.length; i++){
-			
-			userData += `<tr>
-						<td>${userDetailArray[i].userId}</td>
-						<td>${userDetailArray[i].firstName}</td>
-						<td>${userDetailArray[i].lastName}</td>
-						<td>${userDetailArray[i].userName}</td>
-						<td>${userDetailArray[i].age}</td>
-						<td>${userDetailArray[i].createdAt}</td>
-						<td><button onclick="updateDatainStorage(${userDetailArray[i].userId})">update</button></td>
-						<td><button onclick="removeDataFromStorage(${userDetailArray[i].userId})">remove</button></td>
-						</tr>`;
-		}
+		var tbl = document.createElement('table');
+		tbl.id = 'user_data_table';
+		tbl.style.width = '100%';
+		let caption = tbl.createCaption();
+		caption.innerHTML = 'User Detail';
 
-		userDetailTable += userData;
-		userDetailTable += "</table>";
-		document.getElementById('userData').innerHTML = userDetailTable; 
+		let header = tbl.createTHead();
+		let row = header.insertRow(0);
+		row.style.textAlign ='center';
+		row.style.fontWeight = 'bold';
+
+		let cell1 = row.insertCell(0);
+		cell1.innerHTML = 'User Id';
+		let cell2 = row.insertCell(1);
+		cell2.innerHTML = 'First Name';
+		let cell3 = row.insertCell(2);
+		cell3.innerHTML = 'Last Name';
+		let cell4 = row.insertCell(3);
+		cell4.innerHTML = 'User-Name';
+		let cell5 = row.insertCell(4);
+		cell5.innerHTML = 'Age';
+		let cell6 = row.insertCell(5);
+		cell6.innerHTML = 'Created At';
+		let cell7 = row.insertCell(6);
+		cell7.innerHTML = 'Action';
+		cell7.setAttribute('colspan', '2');
+
+		var body = document.createElement("tbody");
+
+		for(var i=0; i<userDetailArray.length; i++){
+			let tr = body.insertRow(i);
+
+			let cell1 = tr.insertCell(0);
+			cell1.innerHTML = userDetailArray[i].userId;
+			let cell2 = tr.insertCell(1);
+			cell2.innerHTML = userDetailArray[i].firstName;
+			let cell3 = tr.insertCell(2);
+			cell3.innerHTML = userDetailArray[i].lastName;
+			let cell4 = tr.insertCell(3);
+			cell4.innerHTML = userDetailArray[i].userName;
+			let cell5 = tr.insertCell(4);
+			cell5.innerHTML = userDetailArray[i].age;
+			let cell6 = tr.insertCell(5);
+			cell6.innerHTML = userDetailArray[i].createdAt;
+			let cell7 = tr.insertCell(6);
+			cell7.innerHTML = `<button onclick="updateDatainStorage(${userDetailArray[i].userId})">update</button>`;
+			let cell8 = tr.insertCell(7);
+			cell8.innerHTML = `<button onclick="removeDataFromStorage(${userDetailArray[i].userId})">remove</button></td>`;
+		}
+		tbl.appendChild(body);
+		document.getElementById('userData').appendChild(tbl);
 	}
 	else{
 		alert('There is no data to display');
 	}
 }
 
-//add update & remove button at end of the row
-
-//when press update :
-//change the name of add data to update button 
-//get the userid of the row and pass it to update function 
-//at update function, get the data-object using userid and set the data into the input_element 
-//when user press the update button send data to the adddata function and update the data at the received id and display change in table
+// add update & remove button at end of the row
+// when press update :
+// change the name of add data to update button 
+// get the userid of the row and pass it to update function 
+// at update function, get the data-object using userid and set the data into the input_element 
+// when user press the update button send data to the adddata function and update the data at the received id and display change in table
 function updateDatainStorage(id_of_user){
 	var usr_id = id_of_user; 	
 	var array = checkLocalStorage();
