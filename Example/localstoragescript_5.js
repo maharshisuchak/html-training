@@ -179,7 +179,6 @@ function namewithFixedCharacter(){
 }
 
 function dataWithChangerName(item){
-	console.log(item.firstName.slice(1,4));
 	item.firstName = item.firstName.slice(1,4);
 	return item;
 }

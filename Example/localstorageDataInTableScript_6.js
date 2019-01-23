@@ -175,7 +175,6 @@ function removeDataFromStorage(id_of_user){
 
 	var user_id_update = id_of_user;
 	var array_update = checkLocalStorage();
-
 	var currentUserIndex = array_update.findIndex((elem)=>{
 			return elem.userId == user_id_update;
 		});
