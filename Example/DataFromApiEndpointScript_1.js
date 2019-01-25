@@ -2,18 +2,16 @@ const xhr = new XMLHttpRequest;
 const url = 'https://jsonplaceholder.typicode.com/posts';
 var receivedResponse = [];
 
+
+
 xhr.open('GET', url, true);
 xhr.onload = () => {
 	receivedResponse = JSON.parse(xhr.response);
 	var receivedData = '';
 
 	var newResponse = receivedResponse.map((responseFromApi) => {
-		if(responseFromApi.title.length > 20){
-			responseFromApi.title = responseFromApi.title.slice(0,20) + '...';
-		}
-		if(responseFromApi.body.length > 30){
-			responseFromApi.body = responseFromApi.body.slice(0,30) + '...';
-		}
+		responseFromApi.title = cutTheString('title', responseFromApi.title, 0, 20);
+		responseFromApi.body = cutTheString('body', responseFromApi.body, 0, 50);
 		return responseFromApi;
 	});
 
@@ -41,3 +39,22 @@ xhr.onload = () => {
 	document.getElementById('div_for_datain_table').innerHTML = dataInTableFormet;
 }
 xhr.send();
+
+function cutTheString(stringType, string, from, to){
+	if(stringType == 'title'){
+		if(string.length > 20){
+			return string.slice(from,to) + '...';
+		}
+		else{
+			return string;
+		}
+	}
+	if(stringType == 'body'){
+		if(string.length > 50){
+			return string.slice(from,to) + '...';
+		}
+		else{
+			return string;
+		}
+	}
+}

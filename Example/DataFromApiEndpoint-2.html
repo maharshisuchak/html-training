@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data From Api-Endpoint</title>
+
+	<style type="text/css">
+		table,th,td{
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		#newData_section{
+			display: none;
+		}
+	</style>
+
+	<script src="DataFromApiEndpointScript-3.js"></script>
+</head>
+<body>
+	<button id="addDataButton" onclick="toggleInputSection()">Add Data</button>
+	<br>
+	<div id="newData_section">
+		User ID :
+		<br>
+		<input type="number" id="newData_userId">
+		<br>
+		Title : 
+		<br>
+		<input type="text" id="newData_title">
+		<br>
+		Body : 
+		<br>
+		<input type="text" id="newData_body" onkeydown="onKeyDown(event)">
+		<br>
+		<button id="save_update_button" value='0' onclick="addDataInApi()">Save Data</button>
+	</div>
+	<hr>
+	<div id='div_for_datain_table'></div>
+</body>
+</html>
